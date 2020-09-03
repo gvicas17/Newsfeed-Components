@@ -161,7 +161,7 @@ function articleMaker (articleObject){
   articleParagraph3.textContent = articleObject.thirdParagraph
   expandButton.textContent = '+'
 
-  expandButton.addEventListener('click', event =>{
+  expandButton.addEventListener('click', () =>{
     article.classList.toggle('article-open')
   })
   return article
