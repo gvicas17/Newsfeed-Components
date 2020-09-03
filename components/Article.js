@@ -86,6 +86,25 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Front-End vs Back End',
+    date: 'November 14th, 2019',
+    firstParagraph: `It is! It's the city of New New York! Strictly speaking, it's the fifteenth New York since the original, so that makes it 
+      New-New-New-New-New-New-New-New-New-New-New-New-New-New-New New York. Sweet, maybe... Passionate, I suppose... But don't ever mistake that for 
+      nice. You can spend the rest of your life with me, but I can't spend the rest of mine with you. I have to live on. Alone. That's the curse of the 
+      Time Lords. There's something else I've always wanted to say: Allons-y, Alonso! Goodbye...my Sarah Jane! `,
+
+    secondParagraph: `Black tie...Whenever I wear this, something bad always happens. What? What?! WHAT?! I don't want to go. Yeah? Well I'm the Lord
+     of Time. There was a war. A Time War. The Last Great Time War. My people fought a race called the Daleks, for the sake of all creation. And they 
+     lost. We lost. Everyone lost. They're all gone now. My family. My friends. Even that sky. I'm the Doctor, I can save the world with a kettle and 
+     some string! And look! I'm wearing a vegetable! It is! It's the city of New New York! Strictly speaking, it's the fifteenth New York since the 
+     original, so that makes it New-New-New-New-New-New-New-New-New-New-New-New-New-New-New New York.`,
+
+    thirdParagraph: `Aw, I wanted to be ginger! I've never been ginger! And you, Rose Tyler! Fat lot of good you were! You gave up on me! Ooh, that's 
+    rude. Is that the sort of man I am now? Am I rude? Rude and not ginger. People assume that time is a strict progression of cause-and-effect... 
+    but actually, from a non-linear, non-subjective viewpoint, it's more like a big ball of wibbly-wobbly... timey-wimey... stuff. I don't want to go. 
+    River, you know my name. You whispered my name in my ear! There's only one reason I would ever tell anyone my name. There's only one time I could...`
   }
 ];
 
@@ -114,3 +133,42 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+function articleMaker (articleObject){
+  const article = document.createElement ('div')
+  const articleTitle = document.createElement ('h2')
+  const articleDate = document.createElement ('p')
+  const articleParagraph1 = document.createElement ('p')
+  const articleParagraph2 = document.createElement ('p')
+  const articleParagraph3 = document.createElement ('p')
+  const expandButton = document.createElement ('span')
+
+  article.appendChild(articleTitle)
+  article.appendChild(articleDate)
+  article.appendChild(articleParagraph1)
+  article.appendChild(articleParagraph2)
+  article.appendChild(articleParagraph3)
+  article.appendChild(expandButton)
+
+  article.classList.add('article')
+  articleDate.classList.add('date')
+  expandButton.classList.add('expandButton')
+
+  articleTitle.textContent = articleObject.title
+  articleDate.textContent = articleObject.date
+  articleParagraph1.textContent = articleObject.firstParagraph
+  articleParagraph2.textContent = articleObject.secondParagraph
+  articleParagraph3.textContent = articleObject.thirdParagraph
+  expandButton.textContent = '+'
+
+  expandButton.addEventListener('click', () =>{
+    article.classList.toggle('article-open')
+  })
+  return article
+}
+
+data.forEach(dataObj =>{
+  const articlesdiv = document.querySelector('.articles')
+  const divArticleEl = articleMaker(dataObj)
+  articlesdiv.appendChild(divArticleEl)
+})
